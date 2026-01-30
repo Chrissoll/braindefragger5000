@@ -1,0 +1,169 @@
+.time-knob-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.knob-wrapper {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.knob-ticks {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.knob-tick {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.knob-tick::before {
+  content: '';
+  width: 3px;
+  height: 10px;
+  background: var(--text-muted);
+  border-radius: 1px;
+  transition: all 0.2s ease;
+}
+
+.knob-tick.active::before {
+  background: var(--accent-amber);
+  box-shadow: 0 0 8px rgba(232, 168, 73, 0.5);
+  height: 12px;
+}
+
+.tick-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 4px;
+  transition: color 0.2s ease;
+}
+
+.knob-tick.active .tick-label {
+  color: var(--accent-amber);
+  text-shadow: 0 0 8px rgba(232, 168, 73, 0.5);
+}
+
+/* The rotary knob */
+.knob {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #3d3d45, #2a2a30);
+  cursor: grab;
+  transition: box-shadow 0.2s ease;
+  box-shadow:
+    8px 8px 16px rgba(0, 0, 0, 0.5),
+    -4px -4px 8px rgba(255, 255, 255, 0.03),
+    inset 0 0 0 3px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.knob:hover {
+  box-shadow:
+    10px 10px 20px rgba(0, 0, 0, 0.5),
+    -4px -4px 10px rgba(255, 255, 255, 0.04),
+    inset 0 0 0 3px rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(232, 168, 73, 0.1);
+}
+
+.knob.active {
+  cursor: grabbing;
+  box-shadow:
+    6px 6px 12px rgba(0, 0, 0, 0.5),
+    -3px -3px 6px rgba(255, 255, 255, 0.03),
+    inset 0 0 0 3px rgba(0, 0, 0, 0.2),
+    0 0 30px rgba(232, 168, 73, 0.2);
+}
+
+.knob-surface {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* Concentric rings for metallic look */
+.knob-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.knob-ring.outer {
+  inset: 8px;
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+.knob-ring.inner {
+  inset: 20px;
+  background: linear-gradient(145deg, #353538, #252528);
+  border: none;
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Position indicator line */
+.knob-indicator {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 16px;
+  background: var(--accent-amber);
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(232, 168, 73, 0.6);
+}
+
+/* Grip texture */
+.knob-grip {
+  position: absolute;
+  inset: 0;
+}
+
+.grip-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.3);
+  transform-origin: center 50px;
+}
+
+/* Time display */
+.time-display {
+  margin-top: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 100px;
+}
+
+.time-display .display-value {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.time-display .display-label {
+  font-size: 12px;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}

@@ -1,0 +1,259 @@
+/* ===== BRAINDEFRAGGER 5000 ===== */
+/* Skeuomorphic 2000s Hi-Fi Design System */
+
+:root {
+  /* Base colors - warm metallic palette */
+  --bg-dark: #1a1a1e;
+  --bg-medium: #2a2a30;
+  --bg-light: #3a3a42;
+  --bg-panel: linear-gradient(145deg, #2d2d35, #252528);
+
+  /* Accent colors */
+  --accent-amber: #e8a849;
+  --accent-amber-glow: #ffc65c;
+  --accent-green: #5cb85c;
+  --accent-red: #d9534f;
+  --accent-blue: #5bc0de;
+
+  /* Text colors */
+  --text-primary: #e8e6e3;
+  --text-secondary: #a8a6a3;
+  --text-muted: #686866;
+
+  /* Metallic gradients for buttons */
+  --metal-silver: linear-gradient(145deg, #4a4a52, #3a3a42);
+  --metal-silver-pressed: linear-gradient(145deg, #3a3a42, #4a4a52);
+  --metal-dark: linear-gradient(145deg, #2a2a30, #1f1f23);
+
+  /* Shadows */
+  --shadow-raised:
+    4px 4px 8px rgba(0, 0, 0, 0.5),
+    -2px -2px 6px rgba(255, 255, 255, 0.05),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.1);
+  --shadow-pressed:
+    inset 3px 3px 6px rgba(0, 0, 0, 0.5),
+    inset -1px -1px 3px rgba(255, 255, 255, 0.05);
+  --shadow-glow-amber: 0 0 20px rgba(232, 168, 73, 0.3);
+  --shadow-glow-green: 0 0 15px rgba(92, 184, 92, 0.4);
+
+  /* Typography */
+  --font-display: 'Segoe UI', 'Trebuchet MS', sans-serif;
+  --font-mono: 'Consolas', 'Monaco', monospace;
+
+  /* Borders */
+  --border-groove: 2px groove rgba(255, 255, 255, 0.1);
+  --border-ridge: 2px ridge rgba(255, 255, 255, 0.1);
+
+  /* Timing */
+  --transition-fast: 0.15s ease;
+  --transition-medium: 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-display);
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== SKEUOMORPHIC BASE COMPONENTS ===== */
+
+/* Panel - like a hi-fi component face */
+.panel {
+  background: var(--bg-panel);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow:
+    8px 8px 16px rgba(0, 0, 0, 0.4),
+    -4px -4px 12px rgba(255, 255, 255, 0.02),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Classic raised button */
+.btn {
+  background: var(--metal-silver);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: var(--shadow-raised);
+  transition: all var(--transition-fast);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.1), transparent);
+  border-radius: 8px 8px 0 0;
+  pointer-events: none;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    5px 5px 10px rgba(0, 0, 0, 0.5),
+    -2px -2px 8px rgba(255, 255, 255, 0.05);
+}
+
+.btn:active {
+  background: var(--metal-silver-pressed);
+  box-shadow: var(--shadow-pressed);
+  transform: translateY(1px);
+}
+
+.btn.primary {
+  background: linear-gradient(145deg, #c4923e, #a67830);
+  color: #1a1a1e;
+  font-weight: 600;
+}
+
+.btn.primary:hover {
+  box-shadow:
+    var(--shadow-raised),
+    var(--shadow-glow-amber);
+}
+
+/* LED indicator style */
+.led {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #333;
+  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.led.on {
+  background: var(--accent-green);
+  box-shadow:
+    inset 1px 1px 2px rgba(255,255,255,0.3),
+    var(--shadow-glow-green);
+}
+
+.led.amber {
+  background: var(--accent-amber);
+  box-shadow:
+    inset 1px 1px 2px rgba(255,255,255,0.3),
+    var(--shadow-glow-amber);
+}
+
+/* LCD-style display */
+.lcd-display {
+  background: #1a2a1a;
+  border-radius: 4px;
+  padding: 12px 16px;
+  font-family: var(--font-mono);
+  color: #7cb87c;
+  text-shadow: 0 0 8px rgba(124, 184, 124, 0.5);
+  box-shadow:
+    inset 3px 3px 6px rgba(0, 0, 0, 0.6),
+    inset -1px -1px 3px rgba(255, 255, 255, 0.02);
+  border: 1px solid #0a150a;
+}
+
+/* Brushed metal texture */
+.brushed-metal {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.02) 2px,
+      rgba(255, 255, 255, 0.02) 4px
+    ),
+    var(--bg-panel);
+}
+
+/* Embossed text */
+.embossed {
+  color: var(--text-secondary);
+  text-shadow:
+    1px 1px 1px rgba(0, 0, 0, 0.8),
+    -1px -1px 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Section label like on hi-fi */
+.section-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+/* Divider groove */
+.groove {
+  height: 2px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4),
+    rgba(255, 255, 255, 0.05)
+  );
+  margin: 16px 0;
+}
+
+/* Vent holes decoration */
+.vents {
+  display: flex;
+  gap: 4px;
+}
+
+.vents span {
+  width: 3px;
+  height: 20px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.3)
+  );
+  border-radius: 1px;
+}
+
+/* Screen transitions */
+.screen {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Utility classes */
+.text-center { text-align: center; }
+.mb-1 { margin-bottom: 8px; }
+.mb-2 { margin-bottom: 16px; }
+.mb-3 { margin-bottom: 24px; }
+.mb-4 { margin-bottom: 32px; }
+.mt-2 { margin-top: 16px; }
+.mt-3 { margin-top: 24px; }

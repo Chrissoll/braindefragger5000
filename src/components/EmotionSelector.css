@@ -1,0 +1,113 @@
+.emotion-selector {
+  width: 100%;
+}
+
+.emotion-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.emotion-btn {
+  background: linear-gradient(145deg, #3a3a42, #2a2a30);
+  border: none;
+  border-radius: 10px;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow:
+    4px 4px 8px rgba(0, 0, 0, 0.4),
+    -2px -2px 4px rgba(255, 255, 255, 0.03),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.emotion-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.06), transparent);
+  border-radius: 10px 10px 0 0;
+  pointer-events: none;
+}
+
+.emotion-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    6px 6px 12px rgba(0, 0, 0, 0.5),
+    -2px -2px 6px rgba(255, 255, 255, 0.04);
+}
+
+.emotion-btn:active {
+  transform: translateY(1px);
+  box-shadow:
+    inset 3px 3px 6px rgba(0, 0, 0, 0.4),
+    inset -1px -1px 2px rgba(255, 255, 255, 0.02);
+}
+
+.emotion-btn.active {
+  background: linear-gradient(145deg, #3d3d45, #2d2d33);
+  box-shadow:
+    inset 3px 3px 6px rgba(0, 0, 0, 0.4),
+    inset -1px -1px 2px rgba(255, 255, 255, 0.02),
+    0 0 20px rgba(232, 168, 73, 0.15);
+}
+
+.emotion-icon {
+  font-size: 24px;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+
+.emotion-btn.active .emotion-icon {
+  color: var(--accent-amber);
+  text-shadow: 0 0 10px rgba(232, 168, 73, 0.5);
+}
+
+.emotion-label {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+
+.emotion-btn.active .emotion-label {
+  color: var(--text-primary);
+}
+
+.led-indicator {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+@media (max-width: 400px) {
+  .emotion-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .emotion-btn {
+    padding: 14px 10px;
+  }
+
+  .emotion-icon {
+    font-size: 20px;
+  }
+
+  .emotion-label {
+    font-size: 11px;
+  }
+}

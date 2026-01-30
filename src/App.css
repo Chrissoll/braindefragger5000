@@ -1,0 +1,285 @@
+/* Main App Container */
+.app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background:
+    radial-gradient(ellipse at top, #252530 0%, #1a1a1e 50%),
+    #1a1a1e;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 420px;
+  min-height: 600px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Screen Layout */
+.screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.4s ease;
+}
+
+.screen-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.screen-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.screen-actions {
+  width: 100%;
+  max-width: 320px;
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.screen-actions .btn {
+  width: 100%;
+}
+
+/* Navigation */
+.nav-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+}
+
+/* Step Indicator */
+.step-indicator {
+  display: flex;
+  gap: 8px;
+}
+
+.step {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--bg-medium);
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+}
+
+.step.active {
+  background: var(--accent-amber);
+  color: #1a1a1e;
+  box-shadow: 0 0 15px rgba(232, 168, 73, 0.4);
+}
+
+.step.completed {
+  background: var(--accent-green);
+  color: #1a1a1e;
+}
+
+/* Welcome Screen */
+.welcome-screen {
+  text-align: center;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.brand-section {
+  margin-bottom: 30px;
+}
+
+.brand-section .vents {
+  justify-content: center;
+  margin: 12px 0;
+}
+
+.brand-name {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--text-primary);
+  text-shadow:
+    2px 2px 4px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(232, 168, 73, 0.1);
+  margin: 16px 0 8px;
+}
+
+.brand-model {
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--accent-amber);
+  text-shadow:
+    0 0 20px rgba(232, 168, 73, 0.5),
+    2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: var(--font-mono);
+}
+
+.welcome-display {
+  margin: 0 auto 30px;
+  max-width: 280px;
+}
+
+.welcome-display p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.welcome-display .tagline {
+  font-size: 11px;
+  margin-top: 8px;
+  opacity: 0.7;
+  letter-spacing: 2px;
+}
+
+.welcome-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.welcome-actions .btn {
+  width: 100%;
+}
+
+.welcome-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 30px;
+}
+
+.status-text {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+}
+
+/* Intensity Context */
+.intensity-context {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.context-label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.context-emotion {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(232, 168, 73, 0.15);
+  color: var(--accent-amber);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Now Playing Badge */
+.now-playing-badge,
+.session-complete-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  margin: 0 auto;
+}
+
+/* Library Screen */
+.library-screen {
+  padding: 0;
+}
+
+.library-screen .screen-content {
+  padding: 0;
+}
+
+/* Disabled state */
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn:disabled:hover {
+  box-shadow: var(--shadow-raised);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .app {
+    padding: 10px;
+  }
+
+  .app-container {
+    padding: 16px;
+    min-height: auto;
+    border-radius: 16px;
+  }
+
+  .brand-name {
+    font-size: 22px;
+    letter-spacing: 2px;
+  }
+
+  .brand-model {
+    font-size: 36px;
+  }
+}
+
+@media (max-height: 700px) {
+  .app-container {
+    min-height: auto;
+  }
+
+  .welcome-screen {
+    padding: 10px 0;
+  }
+
+  .brand-section {
+    margin-bottom: 20px;
+  }
+
+  .welcome-display {
+    margin-bottom: 20px;
+  }
+}
