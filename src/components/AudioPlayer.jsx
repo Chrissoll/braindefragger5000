@@ -57,19 +57,19 @@ export default function AudioPlayer({ track, onComplete }) {
   return (
     <div className="audio-player">
       {/* Track Info Display */}
-      <div className="player-display panel">
+      <div className="player-display">
         <div className="display-header">
           <span className="category-badge">
             <span className="category-icon">{category?.icon}</span>
             {category?.name}
           </span>
           <div className="status-leds">
-            <span className={`led ${isPlaying ? 'on' : ''}`}></span>
+            <span className={`indicator-dot ${isPlaying ? 'active' : ''}`}></span>
             <span className="led-label">{isPlaying ? 'PLAYING' : 'READY'}</span>
           </div>
         </div>
 
-        <div className="track-info lcd-display">
+        <div className="track-info">
           <div className="track-title">{track.title}</div>
           <div className="track-description">{track.description}</div>
         </div>
@@ -86,7 +86,7 @@ export default function AudioPlayer({ track, onComplete }) {
               style={{ left: `${progress}%` }}
             />
           </div>
-          <div className="time-display">
+          <div className="player-time-display">
             <span>{formatTime(currentTime)}</span>
             <span>{formatTime(totalDuration)}</span>
           </div>

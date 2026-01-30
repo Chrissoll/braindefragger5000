@@ -130,8 +130,8 @@ export default function TimeKnob({ value, onChange }) {
         </div>
       </div>
 
-      {/* LCD Display */}
-      <div className="time-display lcd-display">
+      {/* Time Display */}
+      <div className="time-display">
         <span className="display-value">{value}</span>
         <span className="display-label">minutes</span>
       </div>

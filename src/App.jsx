@@ -90,39 +90,40 @@ function App() {
         return (
           <div className="screen welcome-screen">
             <div className="brand-section">
-              <div className="vents">
-                {[...Array(8)].map((_, i) => <span key={i} />)}
+              <div className="decorative-dots">
+                <span></span>
+                <span></span>
+                <span></span>
               </div>
-              <h1 className="brand-name">BRAINDEFRAGGER</h1>
+              <h1 className="brand-name">Braindefragger</h1>
               <div className="brand-model">5000</div>
-              <div className="vents">
-                {[...Array(8)].map((_, i) => <span key={i} />)}
+            </div>
+
+            <div className="welcome-content">
+              <div className="welcome-display">
+                <p>Mental Wellness System</p>
+                <p className="tagline">Regulate · Restore · Reset</p>
               </div>
-            </div>
 
-            <div className="welcome-display lcd-display">
-              <p>Mental Wellness System</p>
-              <p className="tagline">Regulate · Restore · Reset</p>
-            </div>
+              <div className="welcome-actions">
+                <button
+                  className="btn primary"
+                  onClick={() => setScreen(SCREENS.SELECT_EMOTION)}
+                >
+                  Begin Session
+                </button>
+                <button
+                  className="btn"
+                  onClick={() => setScreen(SCREENS.LIBRARY)}
+                >
+                  Browse Library
+                </button>
+              </div>
 
-            <div className="welcome-actions">
-              <button
-                className="btn primary"
-                onClick={() => setScreen(SCREENS.SELECT_EMOTION)}
-              >
-                Begin Session
-              </button>
-              <button
-                className="btn"
-                onClick={() => setScreen(SCREENS.LIBRARY)}
-              >
-                Browse Library
-              </button>
-            </div>
-
-            <div className="welcome-footer">
-              <div className="led on"></div>
-              <span className="status-text">System Ready</span>
+              <div className="welcome-footer">
+                <div className="indicator-dot active"></div>
+                <span className="status-text">System Ready</span>
+              </div>
             </div>
           </div>
         );
@@ -223,7 +224,7 @@ function App() {
           <div className="screen">
             <div className="screen-header">
               <div className="now-playing-badge">
-                <div className="led on amber"></div>
+                <div className="indicator-dot active"></div>
                 <span>Now Playing</span>
               </div>
             </div>
@@ -244,7 +245,7 @@ function App() {
           <div className="screen">
             <div className="screen-header">
               <div className="session-complete-badge">
-                <div className="led on"></div>
+                <div className="indicator-dot success"></div>
                 <span>Session Complete</span>
               </div>
             </div>
@@ -299,7 +300,7 @@ function App() {
 
   return (
     <div className="app">
-      <div className="app-container panel brushed-metal">
+      <div className="app-container">
         {renderScreen()}
       </div>
     </div>

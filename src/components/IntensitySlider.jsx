@@ -92,8 +92,8 @@ export default function IntensitySlider({ value, onChange, label = 'Intensity' }
         </div>
       </div>
 
-      {/* LCD Display */}
-      <div className="intensity-display lcd-display">
+      {/* Value Display */}
+      <div className="intensity-display">
         <span className="display-value">{value}</span>
         <span className="display-label">/ 10</span>
       </div>

@@ -10,82 +10,50 @@
 
 .slider-track {
   position: relative;
-  height: 24px;
-  background: linear-gradient(
-    to bottom,
-    #1a1a1e 0%,
-    #252528 50%,
-    #1a1a1e 100%
-  );
-  border-radius: 12px;
+  height: 8px;
+  background: var(--bg-soft);
+  border-radius: var(--radius-full);
   cursor: pointer;
-  box-shadow:
-    inset 3px 3px 6px rgba(0, 0, 0, 0.6),
-    inset -2px -2px 4px rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-inner);
 }
 
 .slider-fill {
   position: absolute;
-  top: 3px;
-  left: 3px;
-  height: 18px;
+  top: 0;
+  left: 0;
+  height: 100%;
   background: linear-gradient(
-    to right,
-    #8b6914,
-    #e8a849
+    90deg,
+    var(--sunset-peach),
+    var(--accent-primary)
   );
-  border-radius: 10px;
+  border-radius: var(--radius-full);
   transition: width 0.1s ease;
-  box-shadow:
-    0 0 10px rgba(232, 168, 73, 0.3),
-    inset 0 1px 1px rgba(255, 255, 255, 0.2);
 }
 
 .slider-thumb {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 36px;
-  height: 36px;
-  background: linear-gradient(145deg, #4a4a52, #3a3a42);
+  width: 32px;
+  height: 32px;
+  background: var(--bg-card);
   border-radius: 50%;
   cursor: grab;
   transition: transform 0.1s ease, box-shadow 0.15s ease;
-  box-shadow:
-    4px 4px 8px rgba(0, 0, 0, 0.5),
-    -2px -2px 4px rgba(255, 255, 255, 0.05),
-    inset 1px 1px 2px rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-md);
+  border: 2px solid var(--accent-primary);
   z-index: 2;
 }
 
-.slider-thumb::before {
-  content: '';
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  right: 2px;
-  height: 40%;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.15), transparent);
-  border-radius: 50% 50% 40% 40%;
-}
-
 .slider-thumb:hover {
-  box-shadow:
-    5px 5px 10px rgba(0, 0, 0, 0.5),
-    -2px -2px 6px rgba(255, 255, 255, 0.06),
-    inset 1px 1px 2px rgba(255, 255, 255, 0.1),
-    0 0 15px rgba(232, 168, 73, 0.2);
+  box-shadow: var(--shadow-lg), 0 0 0 4px rgba(212, 149, 106, 0.1);
 }
 
 .slider-thumb.active {
   cursor: grabbing;
   transform: translate(-50%, -50%) scale(1.1);
-  box-shadow:
-    3px 3px 6px rgba(0, 0, 0, 0.5),
-    -1px -1px 3px rgba(255, 255, 255, 0.05),
-    inset 1px 1px 2px rgba(255, 255, 255, 0.1),
-    0 0 20px rgba(232, 168, 73, 0.3);
+  box-shadow: var(--shadow-lg), 0 0 0 6px rgba(212, 149, 106, 0.15);
 }
 
 .thumb-grip {
@@ -95,18 +63,15 @@
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
 }
 
 .thumb-grip span {
-  width: 12px;
+  width: 10px;
   height: 2px;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.4),
-    rgba(255, 255, 255, 0.1)
-  );
+  background: var(--accent-primary);
   border-radius: 1px;
+  opacity: 0.5;
 }
 
 .slider-ticks {
@@ -116,47 +81,53 @@
   right: 0;
   display: flex;
   justify-content: space-between;
-  padding: 8px 3px 0;
+  padding: 12px 0 0;
 }
 
 .tick {
   width: 2px;
   height: 8px;
-  background: var(--text-muted);
+  background: var(--text-light);
   border-radius: 1px;
-  transition: background 0.2s ease, height 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .tick.active {
-  background: var(--accent-amber);
+  background: var(--accent-primary);
   height: 12px;
-  box-shadow: 0 0 8px rgba(232, 168, 73, 0.5);
+  box-shadow: 0 0 6px rgba(212, 149, 106, 0.4);
 }
 
 .slider-labels {
   display: flex;
   justify-content: space-between;
-  padding: 16px 0 0;
+  padding: 20px 0 0;
   font-size: 11px;
   color: var(--text-muted);
   font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
 .intensity-display {
-  margin-top: 20px;
+  margin-top: 24px;
   text-align: center;
   display: flex;
   align-items: baseline;
   justify-content: center;
   gap: 4px;
+  padding: 16px 24px;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
 }
 
 .display-value {
-  font-size: 32px;
-  font-weight: bold;
+  font-size: 40px;
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
 .display-label {
-  font-size: 14px;
-  opacity: 0.7;
+  font-size: 16px;
+  color: var(--text-muted);
 }
