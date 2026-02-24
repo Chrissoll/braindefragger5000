@@ -2,18 +2,18 @@ import { useState } from 'react';
 import './EmotionSelector.css';
 
 const emotions = [
+  { id: 'overwhelmed', label: 'Overwhelmed', icon: '◉' },
   { id: 'anxious', label: 'Anxious', icon: '~' },
-  { id: 'stressed', label: 'Stressed', icon: '!' },
+  { id: 'wired', label: 'Wired', icon: '⚡' },
+  { id: 'flat', label: 'Flat', icon: '—' },
   { id: 'tired', label: 'Tired', icon: '○' },
-  { id: 'lazy', label: 'Lazy', icon: '◇' },
-  { id: 'scattered', label: 'Scattered', icon: '※' },
-  { id: 'angry', label: 'Angry', icon: '▲' }
+  { id: 'foggy', label: 'Foggy', icon: '◌' }
 ];
 
 export default function EmotionSelector({ selected, onSelect }) {
   return (
     <div className="emotion-selector">
-      <div className="section-label">How are you feeling?</div>
+      <div className="section-label">What best describes your state?</div>
       <div className="emotion-grid">
         {emotions.map(emotion => (
           <button

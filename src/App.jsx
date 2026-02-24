@@ -6,6 +6,8 @@ import TimeKnob from './components/TimeKnob';
 import AudioPlayer from './components/AudioPlayer';
 import ResultsDisplay from './components/ResultsDisplay';
 import Library from './components/Library';
+import Stats from './components/Stats';
+import useStats from './hooks/useStats';
 import { getRecommendation } from './data/audioLibrary';
 
 const SCREENS = {
@@ -16,7 +18,8 @@ const SCREENS = {
   PLAYING: 'playing',
   RATE_AFTER: 'rate_after',
   RESULTS: 'results',
-  LIBRARY: 'library'
+  LIBRARY: 'library',
+  STATS: 'stats'
 };
 
 function App() {
@@ -26,6 +29,7 @@ function App() {
   const [afterIntensity, setAfterIntensity] = useState(5);
   const [selectedTime, setSelectedTime] = useState(10);
   const [currentTrack, setCurrentTrack] = useState(null);
+  const { stats, recordSession, hasPracticedToday } = useStats();
 
   const resetSession = () => {
     setSelectedEmotion(null);
@@ -61,6 +65,16 @@ function App() {
   };
 
   const handleAfterRated = () => {
+    // Record the completed session
+    if (currentTrack) {
+      recordSession({
+        emotion: selectedEmotion,
+        beforeScore: beforeIntensity,
+        afterScore: afterIntensity,
+        duration: currentTrack.duration,
+        trackTitle: currentTrack.title,
+      });
+    }
     setScreen(SCREENS.RESULTS);
   };
 
@@ -97,6 +111,13 @@ function App() {
                 A gentle guide for your nervous system
               </p>
 
+              {stats.currentStreak > 0 && (
+                <div className="streak-badge" onClick={() => setScreen(SCREENS.STATS)}>
+                  <span className="streak-fire">🔥</span>
+                  <span className="streak-count">{stats.currentStreak} day streak</span>
+                </div>
+              )}
+
               <div className="welcome-actions">
                 <button
                   className="btn primary"
@@ -110,12 +131,20 @@ function App() {
                 >
                   Browse Library
                 </button>
+                <button
+                  className="btn text"
+                  onClick={() => setScreen(SCREENS.STATS)}
+                >
+                  View Progress
+                </button>
               </div>
             </div>
 
             <div className="welcome-footer">
-              <span className="dot active"></span>
-              <span className="status-text">Ready</span>
+              <span className={`dot ${hasPracticedToday() ? 'success' : 'active'}`}></span>
+              <span className="status-text">
+                {hasPracticedToday() ? 'Practiced today' : 'Ready'}
+              </span>
             </div>
           </div>
         );
@@ -169,13 +198,14 @@ function App() {
 
             <div className="screen-content">
               <div className="intensity-context">
-                <span className="context-label">Rate your</span>
+                <span className="context-label">Feeling</span>
                 <span className="context-emotion">{selectedEmotion}</span>
               </div>
 
               <IntensitySlider
                 value={beforeIntensity}
                 onChange={setBeforeIntensity}
+                label="How affected do you feel right now?"
               />
 
               <div className="screen-actions">
@@ -249,13 +279,14 @@ function App() {
 
             <div className="screen-content">
               <div className="intensity-context">
-                <span className="context-label">How do you feel now?</span>
+                <span className="context-label">Still feeling</span>
                 <span className="context-emotion">{selectedEmotion}</span>
               </div>
 
               <IntensitySlider
                 value={afterIntensity}
                 onChange={setAfterIntensity}
+                label="How affected do you feel now?"
               />
 
               <div className="screen-actions">
@@ -285,6 +316,17 @@ function App() {
             <Library
               onSelectTrack={handleLibraryTrackSelect}
               onBack={() => setScreen(SCREENS.WELCOME)}
+            />
+          </div>
+        );
+
+      case SCREENS.STATS:
+        return (
+          <div className="screen stats-screen">
+            <Stats
+              stats={stats}
+              onBack={() => setScreen(SCREENS.WELCOME)}
+              onStartSession={() => setScreen(SCREENS.SELECT_EMOTION)}
             />
           </div>
         );

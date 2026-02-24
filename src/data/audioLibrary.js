@@ -35,12 +35,12 @@ export const categories = {
 };
 
 export const emotions = {
+  overwhelmed: { name: 'Overwhelmed', color: '#d9534f' },
   anxious: { name: 'Anxious', color: '#e8a849' },
-  stressed: { name: 'Stressed', color: '#d9534f' },
+  wired: { name: 'Wired', color: '#f59e0b' },
+  flat: { name: 'Flat', color: '#8b5cf6' },
   tired: { name: 'Tired', color: '#5bc0de' },
-  lazy: { name: 'Lazy', color: '#8b5cf6' },
-  scattered: { name: 'Scattered', color: '#f59e0b' },
-  angry: { name: 'Angry', color: '#ef4444' }
+  foggy: { name: 'Foggy', color: '#94a3b8' }
 };
 
 export const audioLibrary = [
@@ -50,7 +50,7 @@ export const audioLibrary = [
     title: 'Box Breathing',
     category: 'breathwork',
     duration: 5,
-    emotions: ['anxious', 'stressed'],
+    emotions: ['anxious', 'overwhelmed'],
     description: '4-4-4-4 pattern to calm the nervous system'
   },
   {
@@ -58,7 +58,7 @@ export const audioLibrary = [
     title: '4-7-8 Relaxation Breath',
     category: 'breathwork',
     duration: 7,
-    emotions: ['anxious', 'stressed', 'angry'],
+    emotions: ['anxious', 'overwhelmed', 'wired'],
     description: 'Dr. Weil\'s calming breath technique'
   },
   {
@@ -66,7 +66,7 @@ export const audioLibrary = [
     title: 'Energizing Breath',
     category: 'breathwork',
     duration: 5,
-    emotions: ['tired', 'lazy'],
+    emotions: ['tired', 'flat'],
     description: 'Kapalabhati-inspired awakening practice'
   },
   {
@@ -74,7 +74,7 @@ export const audioLibrary = [
     title: 'Coherent Breathing',
     category: 'breathwork',
     duration: 10,
-    emotions: ['anxious', 'scattered'],
+    emotions: ['anxious', 'foggy'],
     description: '5 breaths per minute for heart-brain coherence'
   },
   {
@@ -82,7 +82,7 @@ export const audioLibrary = [
     title: 'Physiological Sigh',
     category: 'breathwork',
     duration: 3,
-    emotions: ['stressed', 'angry'],
+    emotions: ['overwhelmed', 'wired'],
     description: 'Quick reset using double inhale technique'
   },
   {
@@ -90,7 +90,7 @@ export const audioLibrary = [
     title: 'Alternate Nostril',
     category: 'breathwork',
     duration: 8,
-    emotions: ['scattered', 'anxious'],
+    emotions: ['foggy', 'anxious'],
     description: 'Balance left and right brain hemispheres'
   },
   {
@@ -98,7 +98,7 @@ export const audioLibrary = [
     title: 'Ocean Breath',
     category: 'breathwork',
     duration: 10,
-    emotions: ['stressed', 'tired'],
+    emotions: ['overwhelmed', 'tired'],
     description: 'Ujjayi breath with wave visualization'
   },
   {
@@ -106,7 +106,7 @@ export const audioLibrary = [
     title: 'Power Breath',
     category: 'breathwork',
     duration: 5,
-    emotions: ['lazy', 'tired'],
+    emotions: ['flat', 'tired'],
     description: 'Wim Hof inspired activation sequence'
   },
   {
@@ -114,7 +114,7 @@ export const audioLibrary = [
     title: 'Belly Breathing',
     category: 'breathwork',
     duration: 6,
-    emotions: ['anxious', 'stressed'],
+    emotions: ['anxious', 'overwhelmed'],
     description: 'Diaphragmatic breathing basics'
   },
   {
@@ -122,7 +122,7 @@ export const audioLibrary = [
     title: 'Extended Exhale',
     category: 'breathwork',
     duration: 8,
-    emotions: ['angry', 'stressed'],
+    emotions: ['wired', 'overwhelmed'],
     description: 'Activate parasympathetic response'
   },
 
@@ -132,7 +132,7 @@ export const audioLibrary = [
     title: 'Grounding Presence',
     category: 'meditation',
     duration: 10,
-    emotions: ['anxious', 'scattered'],
+    emotions: ['anxious', 'foggy'],
     description: 'Connect with the present moment'
   },
   {
@@ -140,7 +140,7 @@ export const audioLibrary = [
     title: 'Loving Kindness',
     category: 'meditation',
     duration: 15,
-    emotions: ['angry', 'stressed'],
+    emotions: ['wired', 'overwhelmed'],
     description: 'Metta meditation for self-compassion'
   },
   {
@@ -148,7 +148,7 @@ export const audioLibrary = [
     title: 'Thought Clouds',
     category: 'meditation',
     duration: 8,
-    emotions: ['anxious', 'scattered'],
+    emotions: ['anxious', 'foggy'],
     description: 'Observe thoughts without attachment'
   },
   {
@@ -156,7 +156,7 @@ export const audioLibrary = [
     title: 'Energy Boost',
     category: 'meditation',
     duration: 7,
-    emotions: ['tired', 'lazy'],
+    emotions: ['tired', 'flat'],
     description: 'Visualization for renewed vitality'
   },
   {
@@ -164,7 +164,7 @@ export const audioLibrary = [
     title: 'Safe Place',
     category: 'meditation',
     duration: 12,
-    emotions: ['anxious', 'stressed'],
+    emotions: ['anxious', 'overwhelmed'],
     description: 'Create your internal sanctuary'
   },
   {
@@ -172,7 +172,7 @@ export const audioLibrary = [
     title: 'Focus Flame',
     category: 'meditation',
     duration: 10,
-    emotions: ['scattered', 'lazy'],
+    emotions: ['foggy', 'flat'],
     description: 'Candle visualization for concentration'
   },
   {
@@ -180,7 +180,7 @@ export const audioLibrary = [
     title: 'Release & Let Go',
     category: 'meditation',
     duration: 15,
-    emotions: ['angry', 'stressed'],
+    emotions: ['wired', 'overwhelmed'],
     description: 'Surrender what no longer serves'
   },
   {
@@ -188,7 +188,7 @@ export const audioLibrary = [
     title: 'Morning Intention',
     category: 'meditation',
     duration: 8,
-    emotions: ['tired', 'lazy', 'scattered'],
+    emotions: ['tired', 'flat', 'foggy'],
     description: 'Set your day\'s direction'
   },
   {
@@ -204,7 +204,7 @@ export const audioLibrary = [
     title: 'Inner Smile',
     category: 'meditation',
     duration: 6,
-    emotions: ['stressed', 'angry'],
+    emotions: ['overwhelmed', 'wired'],
     description: 'Taoist practice for inner peace'
   },
   {
@@ -212,7 +212,7 @@ export const audioLibrary = [
     title: 'Noting Practice',
     category: 'meditation',
     duration: 10,
-    emotions: ['scattered', 'anxious'],
+    emotions: ['foggy', 'anxious'],
     description: 'Label experiences as they arise'
   },
   {
@@ -220,7 +220,7 @@ export const audioLibrary = [
     title: 'Open Awareness',
     category: 'meditation',
     duration: 20,
-    emotions: ['stressed', 'scattered'],
+    emotions: ['overwhelmed', 'foggy'],
     description: 'Spacious choiceless awareness'
   },
 
@@ -230,7 +230,7 @@ export const audioLibrary = [
     title: 'Full Body Scan',
     category: 'bodywork',
     duration: 15,
-    emotions: ['anxious', 'stressed', 'angry'],
+    emotions: ['anxious', 'overwhelmed', 'wired'],
     description: 'Complete head-to-toe awareness'
   },
   {
@@ -238,7 +238,7 @@ export const audioLibrary = [
     title: 'Quick Body Check',
     category: 'bodywork',
     duration: 5,
-    emotions: ['scattered', 'stressed'],
+    emotions: ['foggy', 'overwhelmed'],
     description: 'Rapid somatic awareness'
   },
   {
@@ -246,7 +246,7 @@ export const audioLibrary = [
     title: 'Tension Release',
     category: 'bodywork',
     duration: 12,
-    emotions: ['stressed', 'angry'],
+    emotions: ['overwhelmed', 'wired'],
     description: 'Progressive muscle relaxation'
   },
   {
@@ -254,7 +254,7 @@ export const audioLibrary = [
     title: 'Wake Up Body',
     category: 'bodywork',
     duration: 8,
-    emotions: ['tired', 'lazy'],
+    emotions: ['tired', 'flat'],
     description: 'Energizing body awareness'
   },
   {
@@ -262,7 +262,7 @@ export const audioLibrary = [
     title: 'Feet to Earth',
     category: 'bodywork',
     duration: 6,
-    emotions: ['anxious', 'scattered'],
+    emotions: ['anxious', 'foggy'],
     description: 'Grounding through the feet'
   },
   {
@@ -270,7 +270,7 @@ export const audioLibrary = [
     title: 'Heart Space',
     category: 'bodywork',
     duration: 10,
-    emotions: ['angry', 'stressed'],
+    emotions: ['wired', 'overwhelmed'],
     description: 'Open the chest and heart area'
   },
   {
@@ -278,7 +278,7 @@ export const audioLibrary = [
     title: 'Jaw & Face Release',
     category: 'bodywork',
     duration: 7,
-    emotions: ['stressed', 'angry'],
+    emotions: ['overwhelmed', 'wired'],
     description: 'Release facial tension'
   },
   {
@@ -286,7 +286,7 @@ export const audioLibrary = [
     title: 'Belly Awareness',
     category: 'bodywork',
     duration: 8,
-    emotions: ['anxious', 'stressed'],
+    emotions: ['anxious', 'overwhelmed'],
     description: 'Connect with gut feelings'
   },
 
@@ -296,7 +296,7 @@ export const audioLibrary = [
     title: 'Forest Rain',
     category: 'soundscape',
     duration: 15,
-    emotions: ['anxious', 'stressed'],
+    emotions: ['anxious', 'overwhelmed'],
     description: 'Gentle rain in the forest'
   },
   {
@@ -304,7 +304,7 @@ export const audioLibrary = [
     title: 'Ocean Waves',
     category: 'soundscape',
     duration: 20,
-    emotions: ['stressed', 'angry'],
+    emotions: ['overwhelmed', 'wired'],
     description: 'Rolling waves on the shore'
   },
   {
@@ -312,7 +312,7 @@ export const audioLibrary = [
     title: 'Morning Birds',
     category: 'soundscape',
     duration: 10,
-    emotions: ['tired', 'lazy'],
+    emotions: ['tired', 'flat'],
     description: 'Dawn chorus awakening'
   },
   {
@@ -320,7 +320,7 @@ export const audioLibrary = [
     title: 'Tibetan Bowls',
     category: 'soundscape',
     duration: 15,
-    emotions: ['scattered', 'anxious'],
+    emotions: ['foggy', 'anxious'],
     description: 'Singing bowl resonance'
   },
   {
@@ -328,7 +328,7 @@ export const audioLibrary = [
     title: 'Thunderstorm',
     category: 'soundscape',
     duration: 20,
-    emotions: ['stressed', 'angry'],
+    emotions: ['overwhelmed', 'wired'],
     description: 'Distant storm rumbling'
   },
   {
@@ -336,7 +336,7 @@ export const audioLibrary = [
     title: 'Creek & Wind',
     category: 'soundscape',
     duration: 12,
-    emotions: ['anxious', 'scattered'],
+    emotions: ['anxious', 'foggy'],
     description: 'Babbling brook with breeze'
   },
   {
@@ -344,7 +344,7 @@ export const audioLibrary = [
     title: 'Fireplace',
     category: 'soundscape',
     duration: 15,
-    emotions: ['stressed', 'tired'],
+    emotions: ['overwhelmed', 'tired'],
     description: 'Crackling fire warmth'
   },
   {
@@ -352,7 +352,7 @@ export const audioLibrary = [
     title: 'Cafe Ambience',
     category: 'soundscape',
     duration: 20,
-    emotions: ['lazy', 'scattered'],
+    emotions: ['flat', 'foggy'],
     description: 'Gentle background chatter'
   },
   {
@@ -360,7 +360,7 @@ export const audioLibrary = [
     title: 'Wind Chimes',
     category: 'soundscape',
     duration: 10,
-    emotions: ['anxious', 'stressed'],
+    emotions: ['anxious', 'overwhelmed'],
     description: 'Melodic metal chimes'
   },
   {
@@ -368,7 +368,7 @@ export const audioLibrary = [
     title: 'Night Crickets',
     category: 'soundscape',
     duration: 15,
-    emotions: ['stressed', 'anxious'],
+    emotions: ['overwhelmed', 'anxious'],
     description: 'Summer evening sounds'
   },
 
@@ -378,7 +378,7 @@ export const audioLibrary = [
     title: 'Gentle Stretching',
     category: 'movement',
     duration: 10,
-    emotions: ['tired', 'stressed'],
+    emotions: ['tired', 'overwhelmed'],
     description: 'Easy desk-friendly stretches'
   },
   {
@@ -386,7 +386,7 @@ export const audioLibrary = [
     title: 'Shake It Out',
     category: 'movement',
     duration: 5,
-    emotions: ['angry', 'stressed'],
+    emotions: ['wired', 'overwhelmed'],
     description: 'Release tension through shaking'
   },
   {
@@ -394,7 +394,7 @@ export const audioLibrary = [
     title: 'Energy Wake-Up',
     category: 'movement',
     duration: 7,
-    emotions: ['tired', 'lazy'],
+    emotions: ['tired', 'flat'],
     description: 'Quick energizing movements'
   },
   {
@@ -402,7 +402,7 @@ export const audioLibrary = [
     title: 'Neck & Shoulders',
     category: 'movement',
     duration: 8,
-    emotions: ['stressed', 'anxious'],
+    emotions: ['overwhelmed', 'anxious'],
     description: 'Release upper body tension'
   },
   {
@@ -410,7 +410,7 @@ export const audioLibrary = [
     title: 'Grounding Flow',
     category: 'movement',
     duration: 12,
-    emotions: ['scattered', 'anxious'],
+    emotions: ['foggy', 'anxious'],
     description: 'Slow, deliberate movements'
   },
   {
@@ -418,7 +418,7 @@ export const audioLibrary = [
     title: 'Walking Meditation',
     category: 'movement',
     duration: 10,
-    emotions: ['scattered', 'lazy'],
+    emotions: ['foggy', 'flat'],
     description: 'Mindful walking practice'
   },
 
@@ -428,7 +428,7 @@ export const audioLibrary = [
     title: 'Sleep Preparation',
     category: 'sleep',
     duration: 15,
-    emotions: ['anxious', 'stressed'],
+    emotions: ['anxious', 'overwhelmed'],
     description: 'Wind down for restful sleep'
   },
   {
@@ -436,7 +436,7 @@ export const audioLibrary = [
     title: 'Body Melt',
     category: 'sleep',
     duration: 20,
-    emotions: ['stressed', 'anxious'],
+    emotions: ['overwhelmed', 'anxious'],
     description: 'Deep relaxation into sleep'
   },
   {
@@ -444,7 +444,7 @@ export const audioLibrary = [
     title: 'Counting Down',
     category: 'sleep',
     duration: 12,
-    emotions: ['scattered', 'anxious'],
+    emotions: ['foggy', 'anxious'],
     description: 'Numerical descent to sleep'
   },
   {
@@ -452,7 +452,7 @@ export const audioLibrary = [
     title: 'Dream Journey',
     category: 'sleep',
     duration: 25,
-    emotions: ['stressed', 'angry'],
+    emotions: ['overwhelmed', 'wired'],
     description: 'Visualization into dreamland'
   },
   {
@@ -460,7 +460,7 @@ export const audioLibrary = [
     title: 'Night Sky',
     category: 'sleep',
     duration: 18,
-    emotions: ['anxious', 'scattered'],
+    emotions: ['anxious', 'foggy'],
     description: 'Stargazing meditation'
   },
   {
@@ -468,7 +468,7 @@ export const audioLibrary = [
     title: 'Gratitude Rest',
     category: 'sleep',
     duration: 10,
-    emotions: ['stressed', 'angry'],
+    emotions: ['overwhelmed', 'wired'],
     description: 'End day with thankfulness'
   },
   {
@@ -476,7 +476,7 @@ export const audioLibrary = [
     title: 'Heavy & Warm',
     category: 'sleep',
     duration: 15,
-    emotions: ['anxious', 'stressed'],
+    emotions: ['anxious', 'overwhelmed'],
     description: 'Autogenic relaxation for sleep'
   },
   {
@@ -484,7 +484,7 @@ export const audioLibrary = [
     title: 'Breath Into Sleep',
     category: 'sleep',
     duration: 12,
-    emotions: ['anxious', 'scattered'],
+    emotions: ['anxious', 'foggy'],
     description: 'Breathing pattern for sleep onset'
   }
 ];

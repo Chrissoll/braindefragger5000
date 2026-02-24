@@ -23,26 +23,24 @@ export default function Library({ onSelectTrack, onBack }) {
           <span>Back</span>
         </button>
         <h2 className="library-title">Library</h2>
-        <div className="track-count lcd-display">
+        <div className="library-count">
           {filteredTracks.length} tracks
         </div>
       </div>
 
       {/* View mode toggle */}
-      <div className="view-toggle panel">
+      <div className="view-toggle">
         <button
           className={`toggle-btn ${viewMode === 'categories' ? 'active' : ''}`}
           onClick={() => { setViewMode('categories'); setSelectedFilter(null); }}
         >
-          <span className="led-dot"></span>
           Categories
         </button>
         <button
           className={`toggle-btn ${viewMode === 'emotions' ? 'active' : ''}`}
           onClick={() => { setViewMode('emotions'); setSelectedFilter(null); }}
         >
-          <span className="led-dot"></span>
-          By Emotion
+          By State
         </button>
       </div>
 
@@ -85,7 +83,7 @@ export default function Library({ onSelectTrack, onBack }) {
           return (
             <button
               key={track.id}
-              className="track-card panel"
+              className="track-card"
               onClick={() => onSelectTrack(track)}
             >
               <div className="track-icon">

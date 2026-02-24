@@ -151,6 +151,43 @@
   width: 100%;
 }
 
+.welcome-actions .btn.text {
+  background: transparent;
+  color: var(--gray-500);
+  font-size: 14px;
+}
+
+.welcome-actions .btn.text:hover {
+  color: var(--gray-900);
+}
+
+/* Streak Badge */
+.streak-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 10px 20px;
+  background: var(--accent-bg);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-lg);
+  cursor: pointer;
+  transition: all var(--duration) var(--ease);
+}
+
+.streak-badge:hover {
+  transform: scale(1.02);
+}
+
+.streak-fire {
+  font-size: 16px;
+}
+
+.streak-count {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
 .welcome-footer {
   margin-top: var(--space-3xl);
   display: flex;
@@ -206,6 +243,12 @@
 /* ===== LIBRARY SCREEN ===== */
 
 .library-screen {
+  padding: 0;
+}
+
+/* ===== STATS SCREEN ===== */
+
+.stats-screen {
   padding: 0;
 }
 
