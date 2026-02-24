@@ -1,8 +1,10 @@
+/* ===== LIBRARY ===== */
+
 .library {
   width: 100%;
   max-width: 480px;
   margin: 0 auto;
-  padding: 20px 0 40px;
+  padding: var(--space-lg) 0 var(--space-2xl);
 }
 
 /* Header */
@@ -10,26 +12,27 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: var(--space-xl);
   padding: 0 4px;
 }
 
 .back-btn {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   background: none;
   border: none;
-  color: var(--text-secondary);
-  font-size: 13px;
+  color: var(--gray-500);
+  font-size: 14px;
   cursor: pointer;
-  padding: 8px 0;
-  transition: all 0.2s ease;
-  font-family: var(--font-display);
+  padding: var(--space-sm) 0;
+  transition: all var(--duration) var(--ease);
+  font-family: var(--font-sans);
+  font-weight: 500;
 }
 
 .back-btn:hover {
-  color: var(--text-primary);
+  color: var(--gray-900);
 }
 
 .back-arrow {
@@ -37,55 +40,53 @@
 }
 
 .library-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-primary);
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--gray-900);
 }
 
 .library-count {
-  padding: 6px 12px;
-  font-size: 11px;
-  background: var(--bg-card);
+  padding: 6px 14px;
+  font-size: 12px;
+  background: var(--gray-100);
   border-radius: var(--radius-full);
-  color: var(--text-secondary);
-  box-shadow: var(--shadow-sm);
+  color: var(--gray-600);
+  font-weight: 500;
 }
 
 /* Filters */
 .filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 24px;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
 }
 
 .filter-chip {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 14px;
-  background: var(--bg-card);
-  border: 1px solid rgba(60, 54, 46, 0.08);
+  padding: 10px 16px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
   border-radius: var(--radius-full);
-  color: var(--text-secondary);
-  font-size: 12px;
+  color: var(--gray-600);
+  font-size: 13px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: var(--shadow-sm);
+  transition: all var(--duration) var(--ease);
+  font-weight: 500;
 }
 
 .filter-chip:hover {
-  border-color: rgba(60, 54, 46, 0.15);
-  color: var(--text-primary);
+  border-color: var(--gray-300);
+  color: var(--gray-900);
 }
 
 .filter-chip.active {
-  background: linear-gradient(135deg, var(--sunset-peach), var(--sunset-orange));
-  border-color: transparent;
-  color: var(--text-primary);
-  font-weight: 500;
+  background: var(--black);
+  border-color: var(--black);
+  color: var(--white);
 }
 
 .filter-icon {
@@ -96,28 +97,27 @@
 .track-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-md);
 }
 
 .track-card {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 16px;
+  gap: var(--space-md);
+  padding: var(--space-md);
   text-align: left;
   cursor: pointer;
-  border: 1px solid rgba(60, 54, 46, 0.06);
+  border: 1px solid var(--gray-100);
   width: 100%;
-  transition: all 0.2s ease;
-  background: var(--bg-card);
+  transition: all var(--duration) var(--ease);
+  background: var(--white);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
 }
 
 .track-card:hover {
+  border-color: var(--gray-200);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  border-color: rgba(60, 54, 46, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
 .track-icon {
@@ -126,7 +126,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-soft);
+  background: var(--gray-100);
   border-radius: var(--radius-md);
   font-size: 22px;
   flex-shrink: 0;
@@ -138,39 +138,40 @@
 }
 
 .track-name {
+  font-family: var(--font-sans);
   font-size: 15px;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--gray-900);
   margin-bottom: 4px;
 }
 
 .track-meta {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-sm);
   margin-bottom: 4px;
 }
 
 .track-category {
-  font-size: 10px;
+  font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  color: var(--gray-500);
 }
 
 .track-duration {
-  font-size: 10px;
-  font-weight: 500;
-  color: var(--accent-primary);
-  background: rgba(212, 149, 106, 0.15);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-dark);
+  background: var(--accent-bg);
   padding: 3px 8px;
   border-radius: var(--radius-full);
 }
 
 .track-desc {
-  font-size: 12px;
-  color: var(--text-secondary);
-  margin-bottom: 8px;
+  font-size: 13px;
+  color: var(--gray-500);
+  margin-bottom: var(--space-sm);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -183,11 +184,11 @@
 }
 
 .emotion-tag {
-  font-size: 9px;
+  font-size: 10px;
   padding: 3px 8px;
-  background: var(--bg-soft);
+  background: var(--gray-100);
   border-radius: var(--radius-full);
-  color: var(--text-muted);
+  color: var(--gray-600);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -198,60 +199,61 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-soft);
+  background: var(--gray-100);
   border-radius: 50%;
   flex-shrink: 0;
-  transition: all 0.2s ease;
+  transition: all var(--duration) var(--ease);
 }
 
 .track-card:hover .track-play {
-  background: linear-gradient(135deg, var(--sunset-peach), var(--accent-primary));
+  background: var(--black);
 }
 
 .play-icon-small {
   width: 0;
   height: 0;
-  border-left: 12px solid var(--text-secondary);
+  border-left: 12px solid var(--gray-600);
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
   margin-left: 3px;
-  transition: border-color 0.2s ease;
+  transition: border-color var(--duration) var(--ease);
 }
 
 .track-card:hover .play-icon-small {
-  border-left-color: white;
+  border-left-color: var(--white);
 }
 
 /* Empty state */
 .empty-state {
   text-align: center;
-  padding: 60px 20px;
-  color: var(--text-muted);
+  padding: var(--space-3xl) var(--space-lg);
+  color: var(--gray-500);
 }
 
 .empty-state p {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 /* Responsive */
 @media (max-width: 480px) {
   .library {
-    padding: 16px 0 30px;
+    padding: var(--space-md) 0 var(--space-xl);
   }
 
   .library-header {
     flex-wrap: wrap;
-    gap: 12px;
+    gap: var(--space-md);
   }
 
   .library-title {
     order: -1;
     width: 100%;
     text-align: center;
+    font-size: 20px;
   }
 
   .track-card {
-    padding: 14px;
+    padding: var(--space-sm) var(--space-md);
   }
 
   .track-icon {

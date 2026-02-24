@@ -8,7 +8,6 @@ import ResultsDisplay from './components/ResultsDisplay';
 import Library from './components/Library';
 import { getRecommendation } from './data/audioLibrary';
 
-// App flow screens
 const SCREENS = {
   WELCOME: 'welcome',
   SELECT_EMOTION: 'select_emotion',
@@ -76,7 +75,6 @@ function App() {
 
   const handleLibraryTrackSelect = (track) => {
     setCurrentTrack(track);
-    // If coming from library without emotion context, set defaults
     if (!selectedEmotion && track.emotions.length > 0) {
       setSelectedEmotion(track.emotions[0]);
       setBeforeIntensity(5);
@@ -90,20 +88,14 @@ function App() {
         return (
           <div className="screen welcome-screen">
             <div className="brand-section">
-              <div className="decorative-dots">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-              <h1 className="brand-name">Braindefragger</h1>
-              <div className="brand-model">5000</div>
+              <p className="brand-name">Braindefragger</p>
+              <h1 className="brand-model">5000</h1>
             </div>
 
             <div className="welcome-content">
-              <div className="welcome-display">
-                <p>Mental Wellness System</p>
-                <p className="tagline">Regulate · Restore · Reset</p>
-              </div>
+              <p className="welcome-tagline">
+                A gentle guide for your nervous system
+              </p>
 
               <div className="welcome-actions">
                 <button
@@ -113,17 +105,17 @@ function App() {
                   Begin Session
                 </button>
                 <button
-                  className="btn"
+                  className="btn secondary"
                   onClick={() => setScreen(SCREENS.LIBRARY)}
                 >
                   Browse Library
                 </button>
               </div>
+            </div>
 
-              <div className="welcome-footer">
-                <div className="indicator-dot active"></div>
-                <span className="status-text">System Ready</span>
-              </div>
+            <div className="welcome-footer">
+              <span className="dot active"></span>
+              <span className="status-text">Ready</span>
             </div>
           </div>
         );
@@ -132,11 +124,13 @@ function App() {
         return (
           <div className="screen">
             <div className="screen-header">
-              <button className="nav-btn" onClick={resetSession}>← Back</button>
+              <button className="nav-btn" onClick={resetSession}>
+                ← Back
+              </button>
               <div className="step-indicator">
-                <span className="step active">1</span>
-                <span className="step">2</span>
-                <span className="step">3</span>
+                <span className="step active"></span>
+                <span className="step"></span>
+                <span className="step"></span>
               </div>
             </div>
 
@@ -163,11 +157,13 @@ function App() {
         return (
           <div className="screen">
             <div className="screen-header">
-              <button className="nav-btn" onClick={() => setScreen(SCREENS.SELECT_EMOTION)}>← Back</button>
+              <button className="nav-btn" onClick={() => setScreen(SCREENS.SELECT_EMOTION)}>
+                ← Back
+              </button>
               <div className="step-indicator">
-                <span className="step completed">1</span>
-                <span className="step active">2</span>
-                <span className="step">3</span>
+                <span className="step completed"></span>
+                <span className="step active"></span>
+                <span className="step"></span>
               </div>
             </div>
 
@@ -180,7 +176,6 @@ function App() {
               <IntensitySlider
                 value={beforeIntensity}
                 onChange={setBeforeIntensity}
-                label="How intense is this feeling?"
               />
 
               <div className="screen-actions">
@@ -196,11 +191,13 @@ function App() {
         return (
           <div className="screen">
             <div className="screen-header">
-              <button className="nav-btn" onClick={() => setScreen(SCREENS.RATE_BEFORE)}>← Back</button>
+              <button className="nav-btn" onClick={() => setScreen(SCREENS.RATE_BEFORE)}>
+                ← Back
+              </button>
               <div className="step-indicator">
-                <span className="step completed">1</span>
-                <span className="step completed">2</span>
-                <span className="step active">3</span>
+                <span className="step completed"></span>
+                <span className="step completed"></span>
+                <span className="step active"></span>
               </div>
             </div>
 
@@ -222,9 +219,9 @@ function App() {
       case SCREENS.PLAYING:
         return (
           <div className="screen">
-            <div className="screen-header">
+            <div className="screen-header" style={{ justifyContent: 'center' }}>
               <div className="now-playing-badge">
-                <div className="indicator-dot active"></div>
+                <span className="dot active"></span>
                 <span>Now Playing</span>
               </div>
             </div>
@@ -243,9 +240,9 @@ function App() {
       case SCREENS.RATE_AFTER:
         return (
           <div className="screen">
-            <div className="screen-header">
+            <div className="screen-header" style={{ justifyContent: 'center' }}>
               <div className="session-complete-badge">
-                <div className="indicator-dot success"></div>
+                <span className="dot success"></span>
                 <span>Session Complete</span>
               </div>
             </div>
@@ -259,7 +256,6 @@ function App() {
               <IntensitySlider
                 value={afterIntensity}
                 onChange={setAfterIntensity}
-                label="Rate your current intensity"
               />
 
               <div className="screen-actions">

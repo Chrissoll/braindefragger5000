@@ -1,3 +1,5 @@
+/* ===== EMOTION SELECTOR ===== */
+
 .emotion-selector {
   width: 100%;
 }
@@ -5,55 +7,52 @@
 .emotion-selector-label {
   text-align: center;
   font-size: 12px;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--text-muted);
-  margin-bottom: 24px;
+  letter-spacing: 1px;
+  color: var(--gray-500);
+  margin-bottom: var(--space-lg);
 }
 
 .emotion-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  gap: var(--space-md);
   max-width: 320px;
   margin: 0 auto;
 }
 
 .emotion-btn {
-  background: var(--bg-card);
-  border: 1px solid rgba(60, 54, 46, 0.08);
+  background: var(--white);
+  border: 1px solid var(--gray-200);
   border-radius: var(--radius-lg);
-  padding: 20px 16px;
+  padding: var(--space-lg) var(--space-md);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-sm);
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: var(--shadow-sm);
+  transition: all var(--duration) var(--ease);
   position: relative;
 }
 
 .emotion-btn:hover {
+  border-color: var(--gray-300);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  border-color: rgba(60, 54, 46, 0.12);
 }
 
 .emotion-btn:active {
   transform: translateY(0);
-  box-shadow: var(--shadow-inner);
 }
 
 .emotion-btn.active {
-  background: linear-gradient(135deg, #fff9f5, #fff5ef);
-  border-color: var(--accent-primary);
-  box-shadow: var(--shadow-md), 0 0 0 2px rgba(212, 149, 106, 0.1);
+  background: var(--accent-bg);
+  border-color: var(--accent);
 }
 
 .emotion-icon {
   font-size: 28px;
-  transition: transform 0.2s ease;
+  transition: transform var(--duration) var(--ease);
 }
 
 .emotion-btn:hover .emotion-icon {
@@ -61,17 +60,17 @@
 }
 
 .emotion-label {
-  font-size: 11px;
-  font-weight: 500;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--text-secondary);
-  transition: color 0.2s ease;
+  letter-spacing: 1px;
+  color: var(--gray-600);
+  transition: color var(--duration) var(--ease);
 }
 
 .emotion-btn.active .emotion-label {
-  color: var(--accent-primary);
-  font-weight: 600;
+  color: var(--accent-dark);
 }
 
 .emotion-indicator {
@@ -81,22 +80,21 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--bg-soft);
-  transition: all 0.2s ease;
+  background: var(--gray-200);
+  transition: all var(--duration) var(--ease);
 }
 
 .emotion-btn.active .emotion-indicator {
-  background: var(--accent-primary);
-  box-shadow: 0 0 8px rgba(212, 149, 106, 0.4);
+  background: var(--accent);
 }
 
 @media (max-width: 360px) {
   .emotion-grid {
-    gap: 10px;
+    gap: var(--space-sm);
   }
 
   .emotion-btn {
-    padding: 16px 12px;
+    padding: var(--space-md) var(--space-sm);
   }
 
   .emotion-icon {

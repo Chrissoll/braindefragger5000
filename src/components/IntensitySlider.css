@@ -1,3 +1,5 @@
+/* ===== INTENSITY SLIDER ===== */
+
 .intensity-slider {
   width: 100%;
   max-width: 320px;
@@ -5,16 +7,15 @@
 }
 
 .slider-container {
-  padding: 20px 10px;
+  padding: var(--space-lg) var(--space-sm);
 }
 
 .slider-track {
   position: relative;
-  height: 8px;
-  background: var(--bg-soft);
+  height: 6px;
+  background: var(--gray-200);
   border-radius: var(--radius-full);
   cursor: pointer;
-  box-shadow: var(--shadow-inner);
 }
 
 .slider-fill {
@@ -22,38 +23,34 @@
   top: 0;
   left: 0;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    var(--sunset-peach),
-    var(--accent-primary)
-  );
+  background: var(--accent);
   border-radius: var(--radius-full);
-  transition: width 0.1s ease;
+  transition: width 0.1s var(--ease);
 }
 
 .slider-thumb {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 32px;
-  height: 32px;
-  background: var(--bg-card);
+  width: 28px;
+  height: 28px;
+  background: var(--white);
   border-radius: 50%;
   cursor: grab;
-  transition: transform 0.1s ease, box-shadow 0.15s ease;
-  box-shadow: var(--shadow-md);
-  border: 2px solid var(--accent-primary);
+  transition: transform 0.1s var(--ease), box-shadow 0.15s var(--ease);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  border: 2px solid var(--accent);
   z-index: 2;
 }
 
 .slider-thumb:hover {
-  box-shadow: var(--shadow-lg), 0 0 0 4px rgba(212, 149, 106, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .slider-thumb.active {
   cursor: grabbing;
   transform: translate(-50%, -50%) scale(1.1);
-  box-shadow: var(--shadow-lg), 0 0 0 6px rgba(212, 149, 106, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
 }
 
 .thumb-grip {
@@ -69,7 +66,7 @@
 .thumb-grip span {
   width: 10px;
   height: 2px;
-  background: var(--accent-primary);
+  background: var(--accent);
   border-radius: 1px;
   opacity: 0.5;
 }
@@ -81,53 +78,50 @@
   right: 0;
   display: flex;
   justify-content: space-between;
-  padding: 12px 0 0;
+  padding: var(--space-sm) 0 0;
 }
 
 .tick {
   width: 2px;
   height: 8px;
-  background: var(--text-light);
+  background: var(--gray-300);
   border-radius: 1px;
-  transition: all 0.2s ease;
+  transition: all var(--duration) var(--ease);
 }
 
 .tick.active {
-  background: var(--accent-primary);
-  height: 12px;
-  box-shadow: 0 0 6px rgba(212, 149, 106, 0.4);
+  background: var(--accent);
+  height: 10px;
 }
 
 .slider-labels {
   display: flex;
   justify-content: space-between;
-  padding: 20px 0 0;
+  padding: var(--space-lg) 0 0;
   font-size: 11px;
-  color: var(--text-muted);
+  color: var(--gray-500);
   font-weight: 500;
   letter-spacing: 0.5px;
 }
 
 .intensity-display {
-  margin-top: 24px;
+  margin-top: var(--space-xl);
   text-align: center;
   display: flex;
   align-items: baseline;
   justify-content: center;
   gap: 4px;
-  padding: 16px 24px;
-  background: var(--bg-card);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
 }
 
 .display-value {
-  font-size: 40px;
-  font-weight: 600;
-  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 64px;
+  font-weight: 300;
+  color: var(--gray-900);
+  line-height: 1;
 }
 
 .display-label {
-  font-size: 16px;
-  color: var(--text-muted);
+  font-size: 18px;
+  color: var(--gray-400);
 }
