@@ -1,18 +1,44 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import './Library.css';
 import { audioLibrary, categories, emotions, getByCategory, getByEmotion } from '../data/audioLibrary';
 
-export default function Library({ onSelectTrack, onBack }) {
-  const [viewMode, setViewMode] = useState('categories'); // 'categories' or 'emotions'
+/**
+ * Audio files should be placed at: /audio/{track.id}.mp3
+ * Example: /audio/breath-001.mp3
+ * The AudioPlayer component will look for files at this path.
+ */
+
+export default function Library({ onSelectTrack, onBack, completedTracks = [] }) {
+  const [viewMode, setViewMode] = useState('categories');
   const [selectedFilter, setSelectedFilter] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const getFilteredTracks = () => {
-    if (!selectedFilter) return audioLibrary;
-    if (viewMode === 'categories') return getByCategory(selectedFilter);
-    return getByEmotion(selectedFilter);
-  };
+  const filteredTracks = useMemo(() => {
+    let tracks = audioLibrary;
 
-  const filteredTracks = getFilteredTracks();
+    // Apply category/emotion filter
+    if (selectedFilter) {
+      if (viewMode === 'categories') {
+        tracks = getByCategory(selectedFilter);
+      } else {
+        tracks = getByEmotion(selectedFilter);
+      }
+    }
+
+    // Apply search filter
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      tracks = tracks.filter(track =>
+        track.title.toLowerCase().includes(query) ||
+        track.description.toLowerCase().includes(query) ||
+        categories[track.category]?.name.toLowerCase().includes(query)
+      );
+    }
+
+    return tracks;
+  }, [selectedFilter, viewMode, searchQuery]);
+
+  const isCompleted = (trackId) => completedTracks.includes(trackId);
 
   return (
     <div className="library">
@@ -26,6 +52,26 @@ export default function Library({ onSelectTrack, onBack }) {
         <div className="library-count">
           {filteredTracks.length} tracks
         </div>
+      </div>
+
+      {/* Search */}
+      <div className="search-wrapper">
+        <span className="search-icon">⌕</span>
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Search tracks..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        {searchQuery && (
+          <button
+            className="search-clear"
+            onClick={() => setSearchQuery('')}
+          >
+            ×
+          </button>
+        )}
       </div>
 
       {/* View mode toggle */}
@@ -78,38 +124,46 @@ export default function Library({ onSelectTrack, onBack }) {
 
       {/* Track list */}
       <div className="track-list">
-        {filteredTracks.map(track => {
-          const category = categories[track.category];
-          return (
-            <button
-              key={track.id}
-              className="track-card"
-              onClick={() => onSelectTrack(track)}
-            >
-              <div className="track-icon">
-                <span>{category?.icon}</span>
-              </div>
-              <div className="track-info">
-                <div className="track-name">{track.title}</div>
-                <div className="track-meta">
-                  <span className="track-category">{category?.name}</span>
-                  <span className="track-duration">{track.duration} min</span>
+        {filteredTracks.length === 0 ? (
+          <div className="empty-state">
+            <p>No tracks found</p>
+          </div>
+        ) : (
+          filteredTracks.map(track => {
+            const category = categories[track.category];
+            const completed = isCompleted(track.id);
+            return (
+              <button
+                key={track.id}
+                className={`track-card ${completed ? 'completed' : ''}`}
+                onClick={() => onSelectTrack(track)}
+              >
+                <div className="track-icon">
+                  <span>{category?.icon}</span>
+                  {completed && <span className="completed-indicator">✓</span>}
                 </div>
-                <div className="track-desc">{track.description}</div>
-                <div className="track-emotions">
-                  {track.emotions.map(em => (
-                    <span key={em} className="emotion-tag">
-                      {emotions[em]?.name}
-                    </span>
-                  ))}
+                <div className="track-info">
+                  <div className="track-name">{track.title}</div>
+                  <div className="track-meta">
+                    <span className="track-category">{category?.name}</span>
+                    <span className="track-duration">{track.duration} min</span>
+                  </div>
+                  <div className="track-desc">{track.description}</div>
+                  <div className="track-emotions">
+                    {track.emotions.map(em => (
+                      <span key={em} className="emotion-tag">
+                        {emotions[em]?.name}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              <div className="track-play">
-                <div className="play-icon-small" />
-              </div>
-            </button>
-          );
-        })}
+                <div className="track-play">
+                  <div className="play-icon-small" />
+                </div>
+              </button>
+            );
+          })
+        )}
       </div>
     </div>
   );

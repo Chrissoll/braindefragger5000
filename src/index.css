@@ -359,3 +359,60 @@ body {
 .mb-2 { margin-bottom: var(--space-md); }
 .mb-3 { margin-bottom: var(--space-lg); }
 .mb-4 { margin-bottom: var(--space-xl); }
+.capitalize { text-transform: capitalize; }
+
+/* ===== DARK MODE ===== */
+
+[data-theme="dark"] {
+  --white: #1a1a1a;
+  --gray-50: #212121;
+  --gray-100: #2a2a2a;
+  --gray-200: #333333;
+  --gray-300: #444444;
+  --gray-400: #666666;
+  --gray-500: #888888;
+  --gray-600: #aaaaaa;
+  --gray-700: #cccccc;
+  --gray-800: #e0e0e0;
+  --gray-900: #f5f5f5;
+  --black: #ffffff;
+
+  --accent-bg: rgba(255, 107, 53, 0.15);
+  --success-light: rgba(52, 199, 89, 0.15);
+}
+
+[data-theme="dark"] body {
+  background: #121212;
+  color: var(--gray-900);
+}
+
+[data-theme="dark"] .app {
+  background: #121212;
+}
+
+[data-theme="dark"] .btn.primary {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .btn.primary:hover {
+  background: var(--accent-light);
+}
+
+[data-theme="dark"] .btn.secondary {
+  background: var(--gray-100);
+  color: var(--gray-900);
+}
+
+[data-theme="dark"] .card {
+  background: var(--gray-100);
+}
+
+/* Back button dark mode */
+[data-theme="dark"] .back-btn {
+  color: var(--gray-500);
+}
+
+[data-theme="dark"] .back-btn:hover {
+  color: var(--gray-900);
+}

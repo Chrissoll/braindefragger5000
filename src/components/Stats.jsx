@@ -1,5 +1,13 @@
 import './Stats.css';
 
+// Milestone badges configuration
+const BADGES = [
+  { id: '7day', label: '7 Day Streak', icon: '🔥', condition: (stats) => stats.longestStreak >= 7 },
+  { id: '30day', label: '30 Day Streak', icon: '⭐', condition: (stats) => stats.longestStreak >= 30 },
+  { id: '100sessions', label: '100 Sessions', icon: '💯', condition: (stats) => stats.totalSessions >= 100 },
+  { id: '500min', label: '500 Minutes', icon: '⏱', condition: (stats) => stats.totalMinutes >= 500 },
+];
+
 export default function Stats({ stats, onBack, onStartSession }) {
   const formatTime = (minutes) => {
     if (minutes < 60) return `${minutes}m`;
@@ -19,7 +27,64 @@ export default function Stats({ stats, onBack, onStartSession }) {
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   };
 
-  const recentSessions = stats.sessions.slice(0, 5);
+  // Calculate average improvement
+  const getAverageImprovement = () => {
+    if (stats.sessions.length === 0) return 0;
+    const totalImprovement = stats.sessions.reduce((sum, s) => sum + (s.improvement || 0), 0);
+    const avgPoints = totalImprovement / stats.sessions.length;
+    // Convert to percentage (out of 10 scale)
+    return Math.round(avgPoints * 10);
+  };
+
+  // Get most practiced emotion
+  const getMostPracticedEmotion = () => {
+    if (stats.sessions.length === 0) return null;
+    const counts = {};
+    stats.sessions.forEach(s => {
+      if (s.emotion) {
+        counts[s.emotion] = (counts[s.emotion] || 0) + 1;
+      }
+    });
+    const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    return sorted.length > 0 ? sorted[0][0] : null;
+  };
+
+  // Get weekly completion data (current week)
+  const getWeeklyData = () => {
+    const today = new Date();
+    const dayOfWeek = today.getDay();
+    const monday = new Date(today);
+    monday.setDate(today.getDate() - ((dayOfWeek + 6) % 7)); // Get Monday
+    monday.setHours(0, 0, 0, 0);
+
+    const weekDays = [];
+    for (let i = 0; i < 7; i++) {
+      const day = new Date(monday);
+      day.setDate(monday.getDate() + i);
+
+      const hasSession = stats.sessions.some(s => {
+        const sessionDate = new Date(s.date);
+        return sessionDate.toDateString() === day.toDateString();
+      });
+
+      weekDays.push({
+        date: day,
+        completed: hasSession,
+        isToday: day.toDateString() === today.toDateString(),
+        isPast: day < today,
+      });
+    }
+    return weekDays;
+  };
+
+  // Get earned badges
+  const earnedBadges = BADGES.filter(badge => badge.condition(stats));
+
+  const recentSessions = stats.sessions.slice(0, 10);
+  const avgImprovement = getAverageImprovement();
+  const mostPracticedEmotion = getMostPracticedEmotion();
+  const weeklyData = getWeeklyData();
+  const daysCompletedThisWeek = weeklyData.filter(d => d.completed).length;
 
   return (
     <div className="stats">
@@ -59,42 +124,63 @@ export default function Stats({ stats, onBack, onStartSession }) {
         </div>
       </div>
 
-      {/* Streak Progress */}
-      {stats.currentStreak > 0 && (
-        <div className="streak-section">
-          <div className="streak-header">
-            <span className="streak-fire">🔥</span>
-            <span className="streak-text">
-              {stats.currentStreak === 1
-                ? 'You started a streak!'
-                : `${stats.currentStreak} days and counting!`}
-            </span>
+      {/* Secondary Stats */}
+      <div className="stats-row-cards">
+        <div className="stat-card-small">
+          <div className="stat-small-value">
+            {avgImprovement > 0 ? '+' : ''}{avgImprovement}%
           </div>
-          <div className="streak-progress">
-            {[...Array(7)].map((_, i) => (
-              <div
-                key={i}
-                className={`streak-day ${i < stats.currentStreak ? 'completed' : ''} ${i < stats.currentStreak % 7 || (stats.currentStreak >= 7 && i < 7) ? 'active' : ''}`}
-              >
-                {i < Math.min(stats.currentStreak, 7) ? '✓' : ''}
+          <div className="stat-small-label">Avg Improvement</div>
+        </div>
+        {mostPracticedEmotion && (
+          <div className="stat-card-small">
+            <div className="stat-small-value capitalize">{mostPracticedEmotion}</div>
+            <div className="stat-small-label">Most Practiced</div>
+          </div>
+        )}
+      </div>
+
+      {/* Weekly View */}
+      <div className="weekly-section">
+        <div className="weekly-header">
+          <span className="weekly-title">This Week</span>
+          <span className="weekly-count">{daysCompletedThisWeek}/7 days</span>
+        </div>
+        <div className="weekly-grid">
+          {weeklyData.map((day, i) => (
+            <div
+              key={i}
+              className={`weekly-day ${day.completed ? 'completed' : ''} ${day.isToday ? 'today' : ''} ${!day.isPast && !day.isToday ? 'future' : ''}`}
+            >
+              <span className="weekly-day-label">
+                {['M', 'T', 'W', 'T', 'F', 'S', 'S'][i]}
+              </span>
+              <span className="weekly-day-indicator">
+                {day.completed ? '✓' : ''}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Badges */}
+      {earnedBadges.length > 0 && (
+        <div className="badges-section">
+          <h2 className="section-title">Milestones</h2>
+          <div className="badges-grid">
+            {earnedBadges.map(badge => (
+              <div key={badge.id} className="badge-item">
+                <span className="badge-icon">{badge.icon}</span>
+                <span className="badge-label">{badge.label}</span>
               </div>
             ))}
-          </div>
-          <div className="streak-labels">
-            <span>Mon</span>
-            <span>Tue</span>
-            <span>Wed</span>
-            <span>Thu</span>
-            <span>Fri</span>
-            <span>Sat</span>
-            <span>Sun</span>
           </div>
         </div>
       )}
 
       {/* Recent Sessions */}
       <div className="recent-section">
-        <h2 className="section-title">Recent Sessions</h2>
+        <h2 className="section-title">Session History</h2>
         {recentSessions.length > 0 ? (
           <div className="session-list">
             {recentSessions.map((session) => (
@@ -104,17 +190,22 @@ export default function Stats({ stats, onBack, onStartSession }) {
                   <span className="session-emotion">{session.emotion}</span>
                   <span className="session-duration">{session.duration}min</span>
                 </div>
+                <div className="session-scores">
+                  <span className="score-before">{session.beforeScore}</span>
+                  <span className="score-arrow">→</span>
+                  <span className="score-after">{session.afterScore}</span>
+                </div>
                 <div className="session-result">
                   {session.improvement > 0 ? (
                     <span className="improvement positive">
-                      -{session.improvement}
+                      -{session.improvement * 10}%
                     </span>
                   ) : session.improvement < 0 ? (
                     <span className="improvement negative">
-                      +{Math.abs(session.improvement)}
+                      +{Math.abs(session.improvement) * 10}%
                     </span>
                   ) : (
-                    <span className="improvement neutral">—</span>
+                    <span className="improvement neutral">0%</span>
                   )}
                 </div>
               </div>
